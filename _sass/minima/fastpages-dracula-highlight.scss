@@ -12,7 +12,7 @@ $dt-orange: #ff6500;
 $dt-pink: #ff79c6;
 $dt-purple: #bd93f9;
 $dt-red: #ff5555;
-$dt-yellow: #f1fa8c;
+$dt-yellow: #ede732;
 $dt-green-light: rgb(172, 229, 145);
 
 .language-python + .language-plaintext {
@@ -35,8 +35,6 @@ $dt-green-light: rgb(172, 229, 145);
 .input_area pre, .input_area div {
     margin-bottom:1.0rem !important;
     margin-top:1.5rem !important;
-    padding-bottom:0rem !important;
-    padding-top:0rem !important;
     background: #323443 !important;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;

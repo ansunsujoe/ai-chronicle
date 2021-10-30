@@ -2,8 +2,8 @@
   
     
         "post0": {
-            "title": "Scatters",
-            "content": "from dash.dr.scatter import mixture_scatter, within_scatter, between_scatter import numpy as np from pathlib import Path . Step 1: Load Data . Loading the Iris Data. . data_dir = Path(&quot;datasets/iris&quot;) X = np.loadtxt(data_dir / &quot;iris.data&quot;, delimiter=&quot;,&quot;) y = np.loadtxt(data_dir / &quot;iris.labels&quot;, delimiter=&quot;,&quot;) . print(f&quot;X shape: {X.shape}&quot;) print(f&quot;y shape: {y.shape}&quot;) . X shape: (150, 4) y shape: (150,) . Step 2: The Mixture Class Scatter .",
+            "title": "Scatters For Feature Selection",
+            "content": "from dash.dr.scatter import mixture_scatter, within_scatter, between_scatter import numpy as np from pathlib import Path import matplotlib.pyplot as plt . Step 1: Load Data . Loading the Iris Data. . data_dir = Path(&quot;datasets/iris&quot;) X = np.loadtxt(data_dir / &quot;iris.data&quot;, delimiter=&quot;,&quot;) y = np.loadtxt(data_dir / &quot;iris.labels&quot;, delimiter=&quot;,&quot;).reshape(-1, 1) . print(f&quot;X shape: {X.shape}&quot;) print(f&quot;y shape: {y.shape}&quot;) . X shape: (150, 4) y shape: (150, 1) . Step 2: The Mixture Class Scatter . Can we minimize and maximize the mixture scatter? . from dash.dr.eig import eigvector from dash.viz.scatter import scatter2d . M = mixture_scatter(X) v = eigvector(M, output=&quot;max&quot;, k=2) result = (v.T @ X.T).T # Plot scatter2d(result, y) .",
             "url": "https://ansunsujoe.github.io/ai-chronicle/2021/10/30/Scatters.html",
             "relUrl": "/2021/10/30/Scatters.html",
             "date": " • Oct 30, 2021"

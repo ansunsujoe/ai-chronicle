@@ -51,7 +51,12 @@ $dt-green-light: rgb(172, 229, 145);
     padding-top:0rem !important;
 }
 
-.output_area div {
+.input_area pre {
+  padding-top: 0.1rem !important;
+  padding-bottom: 0.1rem !important;
+}
+
+.output_area pre {
   padding-top: 0.1rem !important;
   padding-bottom: 0.1rem !important;
 }

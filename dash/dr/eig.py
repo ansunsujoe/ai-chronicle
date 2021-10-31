@@ -14,20 +14,22 @@ def as_singular(sigma, rank=None):
     return array
 
 
-def eigvector(A, output="all", k=1):
+def eig(A, output="all", k=1):
     e, U = np.linalg.eigh(A)
     if output == "all":
-        return U
+        return e, U
     elif output == "max":
-        return U[:,np.argsort(e)[:k]]
+        new_e = np.argsort(e)
+        return new_e[:k], U[:,new_e[:k]]
     elif output == "min":
-        return U[:,np.argsort(-e)[:k]]
+        new_e = np.argsort(-e)
+        return new_e[:k], U[:,new_e[:k]]
 
-def generalized_eigvector(A, B, output="all", k=1):
+def generalized_eig(A, B, output="all", k=1):
     # Calculate EVD of B
     e, U = np.linalg.eigh(B)
     E = as_singular(e ** -0.5)
     C = E @ U.T @ A @ U @ E
     
     # Calculating EVD of C
-    return eigvector(C, output, k)
+    return eig(C, output, k)

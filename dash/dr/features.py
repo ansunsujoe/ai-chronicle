@@ -1,5 +1,6 @@
 import numpy as np
 import math
+from scipy import linalg
 
 """
 # Mixture scatter
@@ -57,12 +58,12 @@ def between_scatter(y, g):
         mus[i] /= counts[i]
         
     # Calculating mu
-    mu = sum([mus[i] * counts[i] for i in range(k)]) / sum(counts[i])
+    mu = sum([mus[i] * counts[i] for i in range(k)]) / sum(counts)
         
     # Use formula to calculate between class scatter matrix
     # B = mj(uj - u)(uj - u).T for j in range(k)
     for j in range(k):
-        B += counts[i] * (mu[j] - mu).reshape(-1, 1) @ (mu[j] - mu).T.reshape(1, -1)
+        B += counts[i] * (mus[j] - mu).reshape(-1, 1) @ (mus[j] - mu).T.reshape(1, -1)
     return B
 
 """
@@ -119,3 +120,17 @@ def fisher_selection(x, y, k=2):
     # Select features with highest R
     return x[:, np.argsort(-R)[:k]]
     
+def recursive_feat_elimination(x, y, k=2):
+    # Base case
+    if x.shape[1] <= k:
+        return x
+    # Otherwise
+    B = x.T @ x
+    h = x.T @ y
+    a = (np.linalg.inv(B) @ h).reshape(-1,)
+    i = np.argmin(np.abs(a))
+    return recursive_feat_elimination(np.concatenate((x[:,:i], x[:,i+1:]), axis=1), y, k)
+
+def qr_selection(x, k=2):
+    _, _, P = linalg.qr(x, pivoting=True)
+    return x[:,P[:k]]
